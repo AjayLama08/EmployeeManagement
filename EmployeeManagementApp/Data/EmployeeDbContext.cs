@@ -23,11 +23,13 @@ namespace EmployeeManagementApp.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.Entity<Department>()
                 .HasMany(d => d.Employees)
                 .WithOne(e => e.Department)
                 .HasForeignKey(e => e.DepartmentCode)
                 .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<Employee>()
                 .HasMany(e => e.Attendances)
                 .WithOne(e => e.Employee)
